@@ -20,5 +20,5 @@ jobs:
         env:
           my_account: ${{ secrets.MY_ACCOUNT }}
           my_var: ${{ vars.MY_VAR }}
-        run: echo "Where are $my_var within $my_account
+        run: echo "Where are $my_var within $my_account"
           
