@@ -16,3 +16,9 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: Test vars and secrets
+        env:
+          my_account: ${{ secrets.MY_ACCOUNT }}
+          my_var: ${{ vars.MY_VAR }}
+        run: echo "Where are $my_var within $my_account
+          
