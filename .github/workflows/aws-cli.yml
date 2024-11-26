@@ -23,4 +23,4 @@ jobs:
            -e AWS_SECRET_ACCESS_KEY=${{ steps.creds.outputs.aws-secret-access-key }} \
            -e AWS_SESSION_TOKEN=${{ steps.creds.outputs.aws-session-token }} \
            -e AWS_REGION="us-east-1" \
-           amazon/aws-cli /bin/bash -c "aws s3 ls"
+           amazon/aws-cli s3 ls
