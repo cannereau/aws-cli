@@ -15,6 +15,7 @@ jobs:
         with:
           role-to-assume: $my_role
           role-session-name: github-session
+          aws-region: "eu-west-1"
           output-credentials: true
     outputs:
       access_key: ${{ steps.creds.outputs.aws-access-key-id }}
