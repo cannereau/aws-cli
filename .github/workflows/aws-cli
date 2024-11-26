@@ -1,9 +1,0 @@
-name: GitHub Actions AWS
-run-name: ${{ github.actor }} is testing out GitHub Actions with AWS container
-on: [push]
-jobs:
-  AWS-Actions:
-    runs-on: ubuntu-latest
-    container: amazon/aws-cli
-    steps:
-      - run: aws --version
