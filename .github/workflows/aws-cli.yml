@@ -2,18 +2,33 @@ name: GitHub Actions AWS
 run-name: ${{ github.actor }} is testing out GitHub Actions with AWS container
 on: [push]
 jobs:
-  AWS-Actions:
+  auth:
     runs-on: ubuntu-latest
-    container: amazon/aws-cli
     permissions:
       id-token: write # This is required for requesting the JWT
     steps:
       - name: configure aws credentials
+        id: creds
         env:
           my_role: ${{ secrets.MY_ROLE }}
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: $my_role
           role-session-name: github-session
+          output-credentials: true
+    outputs:
+      access_key: ${{ steps.creds.outputs.aws-access-key-id }}
+      secret_key: ${{ steps.creds.outputs.aws-secret-access-key }}
+      session_token: ${{ steps.creds.outputs.aws-session-token }}
+  list:
+    needs: auth
+    runs-on: ubuntu-latest
+    container:
+      image: amazon/aws-cli
+      env:
+        AWS_ACCESS_KEY_ID: ${{ needs.auth.outputs.access_key }}
+        AWS_SECRET_ACCESS_KEY: ${{ needs.auth.outputs.secret_key }}
+        AWS_SESSION_TOKEN: ${{ needs.auth.outputs.session_token }}
+    steps:
       - name: list buckets
         run: aws s3 ls
