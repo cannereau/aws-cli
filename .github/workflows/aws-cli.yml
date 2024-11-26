@@ -13,8 +13,8 @@ jobs:
           my_role: ${{ secrets.MY_ROLE }}
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: $my_role
-          role-session-name: github-session
+          role-to-assume: "arn:aws:iam::316382246604:role/cicd-github"
+          role-session-name: "github-session"
           aws-region: "eu-west-1"
           output-credentials: true
     outputs:
