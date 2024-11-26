@@ -28,7 +28,7 @@ jobs:
     container:
       image: amazon/aws-cli
       env:
-        AWS_ACCESS_KEY_ID: ${{ needs.auth.outputs.access_key }}
+        AWS_ACCESS_KEY_ID: "Hello_World"
         AWS_SECRET_ACCESS_KEY: ${{ needs.auth.outputs.secret_key }}
         AWS_SESSION_TOKEN: ${{ needs.auth.outputs.session_token }}
     steps:
