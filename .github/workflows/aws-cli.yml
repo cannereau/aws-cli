@@ -31,5 +31,6 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ needs.auth.outputs.secret_key }}
         AWS_SESSION_TOKEN: ${{ needs.auth.outputs.session_token }}
     steps:
+      - run: echo $AWS_ACCESS_KEY_ID
       - name: list buckets
         run: aws s3 ls
