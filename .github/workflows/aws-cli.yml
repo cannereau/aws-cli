@@ -18,6 +18,7 @@ jobs:
           aws-region: "eu-west-1"
           output-credentials: true
       - run: aws s3 ls
+      - run: echo ${{ steps.creds.outputs.aws-access-key-id }}
     outputs:
       access_key: ${{ steps.creds.outputs.aws-access-key-id }}
       secret_key: ${{ steps.creds.outputs.aws-secret-access-key }}
